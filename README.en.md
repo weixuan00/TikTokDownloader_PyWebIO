@@ -337,7 +337,7 @@ For example: the project is deployed on a domestic server, and the person is in 
 -   The startup method is changed to`python`
 -   Web startup file selection`web_zh.py`
 -   API startup file selection`web_api.py`
--   勾选安装模块依赖
+-   Check install module dependencies
 -   Start at will
 -   If the pagoda runs`Nginx`When waiting for other services, please judge by yourself whether the port is occupied. The running port can be modified at the bottom of the file.
 
