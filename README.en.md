@@ -2,7 +2,7 @@
 
 ![](https://views.whatilearened.today/views/github/Evil0ctal/TikTokDownloader_PyWebIO.svg)[![GitHub license](https://img.shields.io/github/license/Evil0ctal/TikTokDownloader_PyWebIO)](https://github.com/Evil0ctal/TikTokDownloader_PyWebIO/blob/main/LICENSE)[![GitHub issues](https://img.shields.io/github/issues/Evil0ctal/TikTokDownloader_PyWebIO)](https://github.com/Evil0ctal/TikTokDownloader_PyWebIO/issues)[![GitHub forks](https://img.shields.io/github/forks/Evil0ctal/TikTokDownloader_PyWebIO)](https://github.com/Evil0ctal/TikTokDownloader_PyWebIO/network)[![GitHub stars](https://img.shields.io/github/stars/Evil0ctal/TikTokDownloader_PyWebIO)](https://github.com/Evil0ctal/TikTokDownloader_PyWebIO/stargazers)
 
-Language:  \[[English](https://github.com/Evil0ctal/Douyin_TikTok_Download_API/blob/main/README.en.md)]  \[[Simplified Chinese](https://github.com/Evil0ctal/Douyin_TikTok_Download_API/blob/main/README.md)]
+Language:  \[[English](https://github.com/Evil0ctal/Douyin_TikTok_Download_API/blob/main/README.en.md)]  \[[Simplified Chinese](https://github.com/Evil0ctal/Douyin_TikTok_Download_API/blob/main/README.md)]  \[[traditional Chinese](https://github.com/Evil0ctal/Douyin_TikTok_Download_API/blob/main/README.zh-TW.md)]
 
 > Note: This API is applicable to Douyin and TikTok. Douyin is TikTok in China. You can distribute or modify the code at will, but please mark the original author.
 
@@ -10,42 +10,39 @@ Language:  \[[English](https://github.com/Evil0ctal/Douyin_TikTok_Download_API/b
 
 ## 👻Introduction
 
-> Due to malicious use, the two APIs /video and /music are temporarily closed. If necessary, please deploy it yourself. Other functions are still used normally on the demo site. Please save the video file manually before I think of a better solution. My chick only has 0.5G memory and one CPU core, it can't stand it ╥﹏╥...
+> Because the machine configuration of the demo station is very crotch, the CPU will be full and the process will end (in fact, my code is very crotch), for the sake of stability, temporarily close the two /video and /music of the demo station. At the same time, the batch download function of the result page is temporarily unavailable. If you need it, please deploy it yourself or run it locally. Other functions can still be used normally on the demo site. Before I think of a better solution, please right-click to manually save the video File, the two chicks running the demo station only have 0.5G memory and one CPU core, so they can't stand it ╥﹏╥...
 
 🚀Demo address:<https://douyin.wtf/>
 
 🛰API demo:<https://api.douyin.wtf/>
 
-💾iOS Shortcuts:[Click to get instructions](https://www.icloud.com/shortcuts/126820d2783748d1bdec95a223a02639)(Updated on 2022/04/16, the shortcut command can be updated automatically, just install it once.)
+💾iOS Shortcuts:[Click to get instructions](https://www.icloud.com/shortcuts/126820d2783748d1bdec95a223a02639)(Updated on 2022/04/16, the shortcut command can automatically check for updates, just install it once.)
 
 This project uses[PyWebIO](https://github.com/pywebio/PyWebIO)、[Flask](https://github.com/pallets/flask), using Python to implement online batch parsing of Douyin's watermark-free video/atlas.
 
-It can be used to download videos that the author prohibits to download, and can be used with[iOS Shortcuts APP](https://apps.apple.com/cn/app/%E5%BF%AB%E6%8D%B7%E6%8C%87%E4%BB%A4/id915249334)Cooperate with this project API to realize in-app download.
+It can be used to download videos that the author prohibits to download, or to perform data crawling, etc., and can be matched with[Shortcut APP that comes with iOS](https://apps.apple.com/cn/app/%E5%BF%AB%E6%8D%B7%E6%8C%87%E4%BB%A4/id915249334)Cooperate with this project API to realize in-app download.
 
-The shortcut command needs to be in the Douyin or TikTok app, select the video you want to save, click the share button, and then find the option "Douyin TikTok without watermark download", if you encounter a notification asking whether to allow the shortcut command to access xxxx (domain name) or server), you need to click Allow to use it normally.
+The shortcut command needs to be in the Douyin or TikTok app, select the video you want to save, click the share button, and then find the option "Douyin TikTok without watermark download", if you encounter a notification asking whether to allow the shortcut command to access xxxx (domain name) or server), you need to click Allow to use it normally, and the successfully downloaded video or gallery will be saved in a special album for easy browsing.
 
 ## 💡Project file structure
 
+    # 请根据需要自行修改config.ini中的内容
     .
     └── Douyin_TikTok_Download_API/
-        ├── Web/
-        │   ├── web_zh.py(网页入口)
-        │   ├── scraper.py(解析库)
-        │   └── logs.txt(错误日志)
-        ├── API/
-        │   ├── web_api.py(API)
-        │   ├── scraper.py(解析库)
-        │   └── API_logs.txt(API调用日志)
-        ├── TikTok_ZH.py(中文web界面旧代码不再维护,目前仍工作)
-        ├── TikTok_EN.py(英文web界面旧代码不再维护,未测试)
-        └── requirements.txt(旧代码不再维护)
+        ├── /static(静态前端资源)
+        ├── web_zh.py(网页入口)
+        ├── web_api.py(API)
+        ├── scraper.py(解析库)
+        ├── config.ini(网页入口和API的配置文件，请自行修改该文件。)
+        ├── logs.txt(错误日志，自动生成。)
+        └── API_logs.txt(API调用日志，自动生成。)
 
 ## 💯 Supported features:
 
 -   Support Douyin video/atlas parsing
--   Support overseas TikTok video analysis (no atlas analysis)
+-   Support overseas TikTok video analysis
 -   Support batch parsing (support Douyin/TikTok hybrid parsing)
--   Support batch download of watermark-free videos on the result page
+-   Parse the result page to download watermark-free videos in batches
 -   Support API calls
 -   support[iOS Shortcuts](https://apps.apple.com/cn/app/%E5%BF%AB%E6%8D%B7%E6%8C%87%E4%BB%A4/id915249334)Realize in-app download of video/atlas without watermark
 
@@ -57,7 +54,7 @@ The shortcut command needs to be in the Douyin or TikTok app, select the video y
 
 * * *
 
-## 🧭How to use:
+## 🧭 Running instructions (tested Python version is 3.8):
 
 -   Clone this repository:
 
@@ -71,41 +68,45 @@ git clone https://github.com/Evil0ctal/Douyin_TikTok_Download_API.git
 cd Douyin_TikTok_Download_API
 ```
 
+-   Install dependent libraries:
+
+```console
+pip install -r requirements.txt
+```
+
+-   Modify config.ini (optional):
+
+```console
+vim config.ini
+```
+
 -   Web page parsing
 
 ```console
-# 移动至Web目录
-cd Web
-# 安装依赖库
-pip install -r requirements.txt
-# 运行web_zh.py (测试过的Python版本为3.8)
+# 运行web_zh.py
 python3 web_zh.py
 ```
 
 -   API
 
 ```console
-# 移动至API目录
-cd API
-# 安装依赖库
-pip install -r requirements.txt
-# 运行web_api.py (测试过的Python版本为3.8)
+# 运行web_api.py
 python3 web_api.py
 ```
 
 -   call parsing library
 
 ```python
-# 将scraper.py拷贝至你的项目目录(测试过的Python版本为3.8)
+# 将scraper.py拷贝至你的项目目录
 # 在该项目中导入scraper.py 
 from scraper import Scraper
 api = Scraper()
 # 解析Douyin视频/图集
-douyin_data = api.douyin('抖音分享口令/链接')
+douyin_data = api.douyin(input('在此输入抖音分享口令/链接：' ))
 # 返回字典
 print(douyin_data)
 # 解析TikTok视频/图集
-tiktok_data = api.tiktok('TikTok分享口令/链接')
+tiktok_data = api.tiktok(input('在此输入TikTok分享口令/链接：' ))
 # 返回字典
 print(tiktok_data)
 ```
@@ -119,7 +120,7 @@ API入口:
 http://localhost(服务器IP):2333/
 ```
 
-## 🗺️ Supported submission formats:
+## 🗺️ Supported submission formats (including but not limited to the following examples):
 
 -   Douyin share password (copy in APP)
 
@@ -140,7 +141,14 @@ http://localhost(服务器IP):2333/
 https://www.douyin.com/video/6914948781100338440
 ```
 
--   TikTok Short URL (In-App Copy)
+-   Douyin discovery page URL (APP copy)
+
+```text
+例子：
+https://www.douyin.com/discover?modal_id=7069543727328398622
+```
+
+-   TikTok URL Shortening (In-App Copy)
 
 ```text
 例子：
@@ -299,7 +307,6 @@ http://localhost(服务器IP):2333/api?url="复制的(抖音/TikTok)口令/链�
 ```text
 http://localhost(服务器IP):2333/video?url="复制的(抖音/TikTok)口令/链接"
 # 返回无水印mp4文件
-# 大量请求时很吃服务器内存，容易崩，慎用。
 ```
 
 -   Download audio request parameters
@@ -307,7 +314,6 @@ http://localhost(服务器IP):2333/video?url="复制的(抖音/TikTok)口令/链
 ```text
 http://localhost(服务器IP):2333/music?url="复制的(抖音/TikTok)口令/链接"
 # 返回mp3文件
-# 大量请求时很吃服务器内存，容易崩，慎用。
 ```
 
 * * *
@@ -317,13 +323,15 @@ http://localhost(服务器IP):2333/music?url="复制的(抖音/TikTok)口令/链
 > Note:
 > The screenshots may not match the text due to update problems, please refer to the text description first.
 
-> It is best to deploy this project to an overseas server, otherwise strange problems may occur.
+> It is best to deploy this project to an overseas server (preferably a server in the United States), otherwise strange problems may occur.
 
-For example: the project is deployed on a domestic server, and the person is in the United States, click the link of the result page and report an error 403, which is visually related to Douyin CDN.
+example:
+The project is deployed on a domestic server, and the person is in the United States. Clicking the link on the result page reports an error 403, which is visually related to the Douyin CDN.
+The project is deployed on a South Korean server, parsing TikTok errors, and visually TikTok restricts certain regions or IPs.
 
-> Deploy using the Pagoda Linux panel
+> Use the pagoda Linux panel for deployment (the Chinese pagoda must be bound to the mobile phone number, which is very rogue and cannot be bypassed. It is recommended to use the international version of the pagoda, Google search keyword aapanel to install it yourself, and the deployment steps are similar.)
 
--   First go to the security group to open ports 5000 and 2333 (default 5000 for web, 2333 for API default, which can be modified at the bottom of the file.)
+-   First go to the security group to open ports 5000 and 2333 (default 5000 for Web, 2333 for API default, which can be modified in the file config.ini.)
 -   Search for python in the Pagoda app store and install the project manager (version 1.9 is recommended)
 
 ![](https://raw.githubusercontent.com/Evil0ctal/TikTokDownloader_PyWebIO/main/Screenshots/BT_Linux_Panel_Deploy_1.png)
@@ -339,7 +347,7 @@ For example: the project is deployed on a domestic server, and the person is in 
 -   API startup file selection`web_api.py`
 -   Check install module dependencies
 -   Start at will
--   If the pagoda runs`Nginx`When waiting for other services, please judge by yourself whether the port is occupied. The running port can be modified at the bottom of the file.
+-   If the pagoda runs`Nginx`When waiting for other services, please judge by yourself whether the port is occupied. The running port can be modified in the file config.ini.
 
 ![](https://raw.githubusercontent.com/Evil0ctal/TikTokDownloader_PyWebIO/main/Screenshots/BT_Linux_Panel_Deploy_2.png)
 

@@ -2,11 +2,11 @@
 # -*- encoding: utf-8 -*-
 # @Author: https://github.com/Evil0ctal/
 # @Time: 2021/11/06
-# @Update: 2022/04/17
+# @Update: 2022/05/22
 # @Function:
 # 用于在线批量解析Douyin/TikTok的无水印视频/图集。
 # 基于 PyWebIO、Flask, 将scraper.py返回的内容显示在网页上。
-# 默认运行端口5000, 请自行在文件底部修改。
+# 默认运行端口5000, 请自行在config.ini中修改。
 
 
 import os
@@ -15,16 +15,21 @@ import time
 import json
 import tarfile
 import requests
+import configparser
 from scraper import Scraper
 from pywebio import config, session
 from pywebio.input import *
 from pywebio.output import *
 from pywebio.platform.flask import webio_view
-from flask import Flask, request, jsonify
+from flask import Flask
 
-app = Flask(__name__)
-title = "抖音/TikTok无水印在线解析"
-description = "支持在线批量解析下载无水印抖音/TikTok的无水印视频/图集。支持API调用，开源，免费，无广告。"
+
+app = Flask(__name__, static_url_path='')
+app_config = configparser.ConfigParser()
+app_config.read('config.ini', encoding='utf-8')
+web_config = app_config['Web_ZH']
+title = web_config['Web_Title']
+description = web_config['Web_Description']
 headers = {
     'user-agent': 'Mozilla/5.0 (Linux; Android 8.0; Pixel 2 Build/OPD3.170816.012) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Mobile Safari/537.36 Edg/87.0.664.66'
 }
@@ -53,8 +58,8 @@ def valid_check(kou_ling):
     if url_list:
         total_urls = len(url_list)
         # 最大接受提交URL的数量
-        max_urls = 10
-        if total_urls > max_urls:
+        max_urls = web_config['Max_Take_URLs']
+        if total_urls > int(max_urls):
             return '为了避免资源占用过多请确保每次提交的链接少于10个，如需大量解析请自行部署。'
         else:
             for i in url_list:
@@ -87,10 +92,11 @@ def error_do(reason, function, value):
     put_markdown('你可以在右上角的关于菜单中查看本站错误日志。')
     put_markdown('[点击此处在GayHub上进行反馈](https://github.com/Evil0ctal/Douyin_TikTok_Download_API/issues)')
     put_html("<hr>")
-    # 将错误记录在logs.txt中
-    error_date = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
-    with open('logs.txt', 'a') as f:
-        f.write(error_date + ":\n" + function + ': ' + str(reason) + '\n' + "Input value: " + value + '\n')
+    if web_config['Allow_Logs'] == 'True':
+        # 将错误记录在logs.txt中
+        error_date = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
+        with open('logs.txt', 'a') as f:
+            f.write(error_date + ":\n" + function + ': ' + str(reason) + '\n' + "Input value: " + value + '\n')
 
 
 def clean_filename(string, author_name):
@@ -196,6 +202,7 @@ def put_douyin_result(item):
                 ['类型', '内容'],
                 ['格式:', douyin_date['url_type']],
                 ['视频直链: ', put_link('点击打开视频', douyin_date['nwm_video_url'], new_window=True)],
+                ['视频直链1080p: ', put_link('点击打开视频', douyin_date['nwm_video_url_1080p'], new_window=True)],
                 ['视频下载：', put_link('点击下载', download_video, new_window=True)],
                 ['背景音乐直链: ', put_link('点击打开音频', douyin_date['video_music'], new_window=True)],
                 ['背景音乐下载：', put_link('点击下载', download_bgm, new_window=True)],
@@ -233,7 +240,7 @@ def put_douyin_result(item):
             return {'status': 'success',
                     'type': 'album',
                     'album_title': douyin_date['album_title'],
-                    'video_author': douyin_date['video_author'],
+                    'album_author': douyin_date['album_author'],
                     'album_list': douyin_date['album_list'],
                     'album_music': douyin_date['album_music'],
                     'original_url': douyin_date['original_url']}
@@ -264,8 +271,9 @@ def put_tiktok_result(item):
             ['视频下载(无水印)：', put_link('点击下载', download_video, new_window=True)],
             ['音频(名称-作者)：', tiktok_date['video_music_title'] + " - " + tiktok_date['video_music_author']],
             ['音频播放：', put_link('点击播放', tiktok_date['video_music_url'], new_window=True)],
+            ['音频下载：', put_link('点击下载', download_bgm, new_window=True)],
             ['作者昵称: ', tiktok_date['video_author_nickname']],
-            ['作者ID: ', tiktok_date['video_author']],
+            ['作者ID: ', tiktok_date['video_author_id']],
             ['粉丝数量: ', tiktok_date['video_author_followerCount']],
             ['关注他人数量: ', tiktok_date['video_author_followingCount']],
             ['获赞总量: ', tiktok_date['video_author_heartCount']],
@@ -276,7 +284,7 @@ def put_tiktok_result(item):
         return {'status': 'success',
                 'type': 'video',
                 'video_title': tiktok_date['video_title'],
-                'video_author': tiktok_date['video_author'],
+                'video_author': tiktok_date['video_author_nickname'],
                 'nwm_video_url': tiktok_date['nwm_video_url'],
                 'video_music_url': tiktok_date['video_music_url'],
                 'original_url': item}
@@ -457,7 +465,8 @@ def main():
             put_text('总共收到' + str(total_urls) + '个链接')
             put_text('成功: ' + str(success_count) + ' ' + '失败: ' + str(failed_count))
             put_text('解析共耗时: %.4f秒' % (end - start))
-            put_button("下载结果页中的所有视频", onclick=lambda: video_download_window(nwm_success_list))
+            if web_config['Allow_Batch_Download'] == 'True':
+                put_button("下载结果页中的所有视频", onclick=lambda: video_download_window(nwm_success_list))
             put_link('返回主页', '/')
             time.sleep(300)
             # 清理文件夹
@@ -469,11 +478,16 @@ if __name__ == "__main__":
     date = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
     with open('logs.txt', 'a') as f:
         f.write("时间: " + date + " " + "程序重载完毕!" + '\n')
-    app.add_url_rule('/', 'webio_view', webio_view(main), methods=['GET', 'POST', 'OPTIONS'])
+    # 判断是否使用CDN加载前端资源
+    if web_config['PyWebIO_CDN'] == 'True':
+        cdn = True
+    else:
+        cdn = False
+    app.add_url_rule('/', 'webio_view', webio_view(main, cdn=cdn), methods=['GET', 'POST', 'OPTIONS'])
     # 获取空闲端口
     if os.environ.get('PORT'):
         port = int(os.environ.get('PORT'))
     else:
         # 在这里修改默认端口(记得在防火墙放行该端口)
-        port = 5000
+        port = web_config['Port']
     app.run(host='0.0.0.0', port=port)

@@ -1,107 +1,100 @@
-# 欢迎使用 `Douyin_TikTok_Download_API` (抖音/TikTok无水印解析API)
+# 歡迎使用`Douyin_TikTok_Download_API`(抖音/TikTok無水印解析API)
 
-![](https://views.whatilearened.today/views/github/Evil0ctal/TikTokDownloader_PyWebIO.svg)
-[![GitHub license](https://img.shields.io/github/license/Evil0ctal/TikTokDownloader_PyWebIO)](https://github.com/Evil0ctal/TikTokDownloader_PyWebIO/blob/main/LICENSE)
-[![GitHub issues](https://img.shields.io/github/issues/Evil0ctal/TikTokDownloader_PyWebIO)](https://github.com/Evil0ctal/TikTokDownloader_PyWebIO/issues)
-[![GitHub forks](https://img.shields.io/github/forks/Evil0ctal/TikTokDownloader_PyWebIO)](https://github.com/Evil0ctal/TikTokDownloader_PyWebIO/network)
-[![GitHub stars](https://img.shields.io/github/stars/Evil0ctal/TikTokDownloader_PyWebIO)](https://github.com/Evil0ctal/TikTokDownloader_PyWebIO/stargazers)
+![](https://views.whatilearened.today/views/github/Evil0ctal/TikTokDownloader_PyWebIO.svg)[![GitHub license](https://img.shields.io/github/license/Evil0ctal/TikTokDownloader_PyWebIO)](https://github.com/Evil0ctal/TikTokDownloader_PyWebIO/blob/main/LICENSE)[![GitHub issues](https://img.shields.io/github/issues/Evil0ctal/TikTokDownloader_PyWebIO)](https://github.com/Evil0ctal/TikTokDownloader_PyWebIO/issues)[![GitHub forks](https://img.shields.io/github/forks/Evil0ctal/TikTokDownloader_PyWebIO)](https://github.com/Evil0ctal/TikTokDownloader_PyWebIO/network)[![GitHub stars](https://img.shields.io/github/stars/Evil0ctal/TikTokDownloader_PyWebIO)](https://github.com/Evil0ctal/TikTokDownloader_PyWebIO/stargazers)
 
-Language:  [[English](https://github.com/Evil0ctal/Douyin_TikTok_Download_API/blob/main/README.en.md)]  [[简体中文](https://github.com/Evil0ctal/Douyin_TikTok_Download_API/blob/main/README.md)]  [[繁体中文](https://github.com/Evil0ctal/Douyin_TikTok_Download_API/blob/main/README.zh-TW.md)]
+語言：  \[[英語](https://github.com/Evil0ctal/Douyin_TikTok_Download_API/blob/main/README.en.md)]  \[[簡體中文](https://github.com/Evil0ctal/Douyin_TikTok_Download_API/blob/main/README.md)]  \[[繁體中文](https://github.com/Evil0ctal/Douyin_TikTok_Download_API/blob/main/README.zh-TW.md)]
 
-> Note: This API is applicable to Douyin and TikTok. Douyin is TikTok in China. You can distribute or modify the code at will, but please mark the original author.
+> 注：此API適用於抖音和抖音。抖音是中國的TikTok。您可以隨意分發或修改代碼，但請註明原作者。
 
-> 注: 此API适用于Douyin和TikTok，Douyin为中国区域的TikTok，你可以随意分发或修改代码，但请标注原作者。
+> 注: 此API適用於Douyin和TikTok，Douyin為中國區域的TikTok，你可以隨意分發或修改代碼，但請標註原作者。
 
-## 👻介绍
+## 👻介紹
 
-> 因为演示站的机子配置很拉胯，动不动就CPU吃满然后进程结束(其实主要是我代码写的很拉胯)，出于稳定性的考虑，暂时关闭演示站的/video和/music这两个API，同时结果页面的批量下载功能也暂时不可用，如有需求请自行部署或本地运行，其他功能在演示站上仍正常使用，在我没想到更好的解决方法之前请右键手动保存视频文件，在跑演示站的两台的小鸡都只有0.5G内存和一个CPU核心，顶不住了╥﹏╥...
+> 因為演示站的機子配置很拉胯，動不動就CPU吃滿然後進程結束(其實主要是我代碼寫的很拉胯)，出於穩定性的考慮，暫時關閉演示站的/video和/music這兩個API，同時結果頁面的批量下載功能也暫時不可用，如有需求請自行部署或本地運行，其他功能在演示站上仍正常使用，在我沒想到更好的解決方法之前請右鍵手動保存視頻文件，在跑演示站的兩台的小雞都只有0.5G內存和一個CPU核心，頂不住了╥﹏╥...
 
-🚀演示地址：[https://douyin.wtf/](https://douyin.wtf/)
+🚀演示地址：<https://douyin.wtf/>
 
-🛰API演示：[https://api.douyin.wtf/](https://api.douyin.wtf/)
+🛰API演示：<https://api.douyin.wtf/>
 
-💾iOS快捷指令: [点击获取指令](https://www.icloud.com/shortcuts/126820d2783748d1bdec95a223a02639) (更新于2022/04/16，快捷指令可自动检查更新，安装一次即可。)
+💾iOS快捷指令:[點擊獲取指令](https://www.icloud.com/shortcuts/126820d2783748d1bdec95a223a02639)(更新於2022/04/16，快捷指令可自動檢查更新，安裝一次即可。)
 
-本项目使用 [PyWebIO](https://github.com/pywebio/PyWebIO)、[Flask](https://github.com/pallets/flask)，利用Python实现在线批量解析抖音的无水印视频/图集。
+本項目使用[PyWebIO](https://github.com/pywebio/PyWebIO)、[燒瓶](https://github.com/pallets/flask)，利用Python實現在線批量解析抖音的無水印視頻/圖集。
 
-可用于下载作者禁止下载的视频，或者进行数据爬取等等，同时可搭配[iOS自带的快捷指令APP](https://apps.apple.com/cn/app/%E5%BF%AB%E6%8D%B7%E6%8C%87%E4%BB%A4/id915249334)配合本项目API实现应用内下载。
+可用於下載作者禁止下載的視頻，或者進行數據爬取等等，同時可搭配[iOS自帶的快捷指令APP](https://apps.apple.com/cn/app/%E5%BF%AB%E6%8D%B7%E6%8C%87%E4%BB%A4/id915249334)配合本項目API實現應用內下載。
 
-快捷指令需要在抖音或TikTok的APP内，选择你想要保存的视频，点击分享按钮，然后找到 "抖音TikTok无水印下载" 这个选项，如遇到通知询问是否允许快捷指令访问xxxx (域名或服务器)，需要点击允许才可以正常使用，下载成功的视频或图集会保存在一个专门的相册中以方便浏览。
+快捷指令需要在抖音或TikTok的APP內，選擇你想要保存的視頻，點擊分享按鈕，然後找到 "抖音TikTok無水印下載" 這個選項，如遇到通知詢問是否允許快捷指令訪問xxxx (域名或服務器)，需要點擊允許才可以正常使用，下載成功的視頻或圖集會保存在一個專門的相冊中以方便瀏覽。
 
+## 💡項目文件結構
 
-## 💡项目文件结构
-
-```
-# 请根据需要自行修改config.ini中的内容
-.
-└── Douyin_TikTok_Download_API/
-    ├── /static(静态前端资源)
-    ├── web_zh.py(网页入口)
-    ├── web_api.py(API)
-    ├── scraper.py(解析库)
-    ├── config.ini(网页入口和API的配置文件，请自行修改该文件。)
-    ├── logs.txt(错误日志，自动生成。)
-    └── API_logs.txt(API调用日志，自动生成。)
-```
+    # 请根据需要自行修改config.ini中的内容
+    .
+    └── Douyin_TikTok_Download_API/
+        ├── /static(静态前端资源)
+        ├── web_zh.py(网页入口)
+        ├── web_api.py(API)
+        ├── scraper.py(解析库)
+        ├── config.ini(网页入口和API的配置文件，请自行修改该文件。)
+        ├── logs.txt(错误日志，自动生成。)
+        └── API_logs.txt(API调用日志，自动生成。)
 
 ## 💯已支持功能：
 
-- 支持抖音视频/图集解析
-- 支持海外TikTok视频解析
-- 支持批量解析(支持抖音/TikTok混合解析)
-- 解析结果页批量下载无水印视频
-- 支持API调用
-- 支持[iOS快捷指令](https://apps.apple.com/cn/app/%E5%BF%AB%E6%8D%B7%E6%8C%87%E4%BB%A4/id915249334)实现应用内下载无水印视频/图集
+-   支持抖音視頻/圖集解析
+-   支持海外TikTok視頻解析
+-   支持批量解析(支持抖音/TikTok混合解析)
+-   解析結果頁批量下載無水印視頻
+-   支持API調用
+-   支持[iOS快捷指令](https://apps.apple.com/cn/app/%E5%BF%AB%E6%8D%B7%E6%8C%87%E4%BB%A4/id915249334)實現應用內下載無水印視頻/圖集
 
----
+* * *
 
-## 🤦‍♂️后续功能：
+## 🤦‍♂️後續功能：
 
-- [ ] 支持输入(抖音/TikTok)作者主页链接实现批量解析
+-   [ ] 支持輸入(抖音/TikTok)作者主頁鏈接實現批量解析
 
----
+* * *
 
-## 🧭运行说明(经过测试过的Python版本为3.8):
+## 🧭運行說明(經過測試過的Python版本為3.8):
 
-- 克隆本仓库：
+-   克隆本倉庫：
 
 ```console
 git clone https://github.com/Evil0ctal/Douyin_TikTok_Download_API.git
 ```
 
-- 移动至仓库目录：
+-   移動至倉庫目錄：
 
 ```console
 cd Douyin_TikTok_Download_API
 ```
 
-- 安装依赖库：
+-   安裝依賴庫：
 
 ```console
 pip install -r requirements.txt
 ```
 
-- 修改config.ini(可选)：
+-   修改config.ini(可選)：
 
 ```console
 vim config.ini
 ```
 
-- 网页解析
+-   網頁解析
 
 ```console
 # 运行web_zh.py
 python3 web_zh.py
 ```
 
-- API
+-   API
 
 ```console
 # 运行web_api.py
 python3 web_api.py
 ```
 
-- 调用解析库
+-   調用解析庫
 
 ```python
 # 将scraper.py拷贝至你的项目目录
@@ -118,7 +111,7 @@ tiktok_data = api.tiktok(input('在此输入TikTok分享口令/链接：' ))
 print(tiktok_data)
 ```
 
-- 入口
+-   入口
 
 ```text
 网页入口:
@@ -127,49 +120,49 @@ API入口:
 http://localhost(服务器IP):2333/
 ```
 
-## 🗺️支持的提交格式(包含但不仅限于以下例子)：
+## 🗺️支持的提交格式(包含但不僅限於以下例子)：
 
-- 抖音分享口令  (APP内复制)
+-   抖音分享口令  (APP內復制)
 
 ```text
 例子：7.43 pda:/ 让你在几秒钟之内记住我  https://v.douyin.com/L5pbfdP/ 复制此链接，打开Dou音搜索，直接观看视频！
 ```
 
-- 抖音短网址 (APP内复制)
+-   抖音短網址 (APP內復制)
 
 ```text
 例子：https://v.douyin.com/L4FJNR3/
 ```
 
-- 抖音正常网址 (网页版复制)
+-   抖音正常網址 (網頁版複製)
 
 ```text
 例子：
 https://www.douyin.com/video/6914948781100338440
 ```
 
-- 抖音发现页网址 (APP复制)
+-   抖音發現頁網址 (APP複製)
 
 ```text
 例子：
 https://www.douyin.com/discover?modal_id=7069543727328398622
 ```
 
-- TikTok短网址 (APP内复制)
+-   TikTok短網址 (APP內復制)
 
 ```text
 例子：
 https://vm.tiktok.com/TTPdkQvKjP/
 ```
 
-- TikTok正常网址 (网页版复制)
+-   TikTok正常網址 (網頁版複製)
 
 ```text
 例子：
 https://www.tiktok.com/@tvamii/video/7045537727743380782
 ```
 
-- 抖音/TikTok批量网址(无需使用符合隔开)
+-   抖音/TikTok批量網址(無需使用符合隔開)
 
 ```text
 例子：
@@ -183,17 +176,17 @@ https://www.tiktok.com/@tvamii/video/7045537727743380782
 
 ## 🛰️API使用
 
-API可将请求参数转换为需要提取的无水印视频/图片直链，配合IOS捷径可实现应用内下载。
+API可將請求參數轉換為需要提取的無水印視頻/圖片直鏈，配合IOS捷徑可實現應用內下載。
 
-- 解析请求参数
+-   解析請求參數
 
 ```text
 http://localhost(服务器IP):2333/api?url="复制的(抖音/TikTok)口令/链接"
 ```
 
-- 返回参数
+-   返回參數
 
-> 抖音视频
+> 抖音視頻
 
 ```json
 {
@@ -227,7 +220,7 @@ http://localhost(服务器IP):2333/api?url="复制的(抖音/TikTok)口令/链�
 }
 ```
 
-> 抖音图集
+> 抖音圖集
 
 ```json
 {
@@ -268,7 +261,7 @@ http://localhost(服务器IP):2333/api?url="复制的(抖音/TikTok)口令/链�
 }
 ```
 
-> TikTok视频
+> TikTok視頻
 
 ```JSON
 {
@@ -309,89 +302,89 @@ http://localhost(服务器IP):2333/api?url="复制的(抖音/TikTok)口令/链�
 }
 ```
 
-- 下载视频请求参数
+-   下載視頻請求參數
 
 ```text
 http://localhost(服务器IP):2333/video?url="复制的(抖音/TikTok)口令/链接"
 # 返回无水印mp4文件
 ```
 
-- 下载音频请求参数
+-   下載音頻請求參數
 
 ```text
 http://localhost(服务器IP):2333/music?url="复制的(抖音/TikTok)口令/链接"
 # 返回mp3文件
 ```
 
----
+* * *
 
 ## 💾部署
 
 > 注：
-截图可能因更新问题与文字不符，一切请优先参照文字叙述。
+> 截圖可能因更新問題與文字不符，一切請優先參照文字敘述。
 
-> 最好将本项目部署至海外服务器(优先选择美国地区的服务器)，否则可能会出现奇怪的问题。
+> 最好將本項目部署至海外服務器(優先選擇美國地區的服務器)，否則可能會出現奇怪的問題。
 
 例子：
-项目部署在国内服务器，而人在美国，点击结果页面链接报错403 ，目测与抖音CDN有关系。
-项目部署在韩国服务器，解析TikTok报错 ，目测TikTok对某些地区或IP进行了限制。
+項目部署在國內服務器，而人在美國，點擊結果頁面鏈接報錯403 ，目測與抖音CDN有關係。
+項目部署在韓國服務器，解析TikTok報錯 ，目測TikTok對某些地區或IP進行了限制。
 
-> 使用宝塔Linux面板进行部署(中文宝塔要强制绑定手机号了，很流氓且无法绕过，建议使用宝塔国际版，谷歌搜索关键字aapanel自行安装，部署步骤相似。)
+> 使用寶塔Linux面板進行部署(中文寶塔要強制綁定手機號了，很流氓且無法繞過，建議使用寶塔國際版，谷歌搜索關鍵字aapanel自行安裝，部署步驟相似。)
 
-- 首先要去安全组开放5000和2333端口（Web默认5000，API默认2333，可以在文件config.ini中修改。）
-- 在宝塔应用商店内搜索python并安装项目管理器 (推荐使用1.9版本)
+-   首先要去安全組開放5000和2333端口（Web默認5000，API默認2333，可以在文件config.ini中修改。）
+-   在寶塔應用商店內搜索python並安裝項目管理器 (推薦使用1.9版本)
 
 ![](https://raw.githubusercontent.com/Evil0ctal/TikTokDownloader_PyWebIO/main/Screenshots/BT_Linux_Panel_Deploy_1.png)
 
----
+* * *
 
-- 创建一个项目名字随意
-- 路径选择你上传文件的路径
-- Python版本需要至少3以上(在左侧版本管理中自行安装)
-- 框架修改为`Flask`
-- 启动方式修改为`python`
-- Web启动文件选择`web_zh.py`
-- API启动文件选择`web_api.py`
-- 勾选安装模块依赖
-- 开机启动随意
-- 如果宝塔运行了`Nginx`等其他服务时请自行判断端口是否被占用，运行端口可在文件config.ini中修改。
+-   創建一個項目名字隨意
+-   路徑選擇你上傳文件的路徑
+-   Python版本需要至少3以上(在左側版本管理中自行安裝)
+-   框架修改為`Flask`
+-   啟動方式修改為`python`
+-   Web啟動文件選擇`web_zh.py`
+-   API啟動文件選擇`web_api.py`
+-   勾選安裝模塊依賴
+-   開機啟動隨意
+-   如果寶塔運行了`Nginx`等其他服務時請自行判斷端口是否被佔用，運行端口可在文件config.ini中修改。
 
 ![](https://raw.githubusercontent.com/Evil0ctal/TikTokDownloader_PyWebIO/main/Screenshots/BT_Linux_Panel_Deploy_2.png)
 
----
+* * *
 
-## 🎉截图
+## 🎉截圖
 
 > 注：
-截图可能因更新问题与文字不符，一切请优先参照文字叙述。
+> 截圖可能因更新問題與文字不符，一切請優先參照文字敘述。
 
-- 主界面
+-   主界面
 
 ![](https://github.com/Evil0ctal/TikTokDownloader_PyWebIO/blob/main/Screenshots/home.png)
 
----
+* * *
 
-- 解析完成
+-   解析完成
 
-> 单个
+> 單個
 
 ![](https://github.com/Evil0ctal/TikTokDownloader_PyWebIO/blob/main/Screenshots/single_result.png)
 
----
+* * *
 
 > 批量
 
 ![](https://github.com/Evil0ctal/TikTokDownloader_PyWebIO/blob/main/Screenshots/multi_results.png)
 
----
+* * *
 
-- API提交/返回
+-   API提交/返回
 
-> 视频返回值
+> 視頻返回值
 
 ![](https://github.com/Evil0ctal/TikTokDownloader_PyWebIO/blob/main/Screenshots/api_video_result.png)
 
-> 图集返回值
+> 圖集返回值
 
 ![](https://github.com/Evil0ctal/TikTokDownloader_PyWebIO/blob/main/Screenshots/api_image_result.png)
 
@@ -399,4 +392,4 @@ http://localhost(服务器IP):2333/music?url="复制的(抖音/TikTok)口令/链
 
 ![](https://raw.githubusercontent.com/Evil0ctal/TikTokDownloader_PyWebIO/main/Screenshots/tiktok_API.png)
 
----
+* * *
